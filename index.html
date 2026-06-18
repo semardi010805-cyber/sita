@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="assets/images/logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Smart Image Thresholding App</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+
+
+    <div class="dashboard">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+
+            <div class="sidebar-logo">
+                <img src="assets/images/logo.png" alt="logo">
+                <h2>SITA</h2>
+            </div>
+
+           <ul class="menu">
+
+    <li class="active" id="homeBtn">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+    </li>
+
+    <li id="thresholdBtn">
+        <i class="fa-solid fa-sliders"></i>
+        <span>Threshold Processing</span>
+    </li>
+
+    <li id="historyBtn">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>History</span>
+    </li>
+
+    <li id="settingsBtn">
+        <i class="fa-solid fa-gear"></i>
+        <span>Settings</span>
+    </li>
+
+
+        </div>
+
+       <!-- MAIN CONTENT -->
+<div class="main-content">
+
+    <!-- HOME SECTION -->
+    <div id="homeSection" class="content-section">
+
+        <div class="header">
+            <h1>Dashboard Home</h1>
+
+            <div class="user-info">
+                <i class="fa-solid fa-user"></i>
+                <span>Welcome User</span>
+            </div>
+        </div>
+
+        <div class="home-card">
+
+    <h2>Welcome to Smart Image Thresholding App</h2>
+
+    <p>
+        Aplikasi ini digunakan untuk pemrosesan citra digital
+        menggunakan teknik thresholding dengan desain UI/UX modern.
+    </p>
+
+    <br>
+
+    <h3>Thresholding Techniques Used</h3>
+
+    <br>
+
+    <!-- BINARY -->
+    <div class="threshold-info">
+
+        <h4>
+            <i class="fa-solid fa-circle"></i>
+            Binary Threshold
+        </h4>
+
+        <p>
+            Mengubah gambar menjadi hitam putih berdasarkan
+            nilai threshold tertentu. Piksel di atas nilai
+            threshold akan menjadi putih dan di bawahnya
+            menjadi hitam.
+        </p>
+
+    </div>
+
+    <br>
+
+    <!-- BINARY INVERSE -->
+    <div class="threshold-info">
+
+        <h4>
+            <i class="fa-solid fa-circle-half-stroke"></i>
+            Binary Inverse Threshold
+        </h4>
+
+        <p>
+            Kebalikan dari binary threshold, di mana piksel
+            di atas nilai threshold menjadi hitam dan
+            di bawahnya menjadi putih.
+        </p>
+
+    </div>
+
+    <br>
+
+    <!-- ADAPTIVE -->
+    <div class="threshold-info">
+
+        <h4>
+            <i class="fa-solid fa-sliders"></i>
+            Adaptive Threshold
+        </h4>
+
+        <p>
+            Teknik thresholding yang menghitung nilai ambang
+            secara otomatis berdasarkan area lokal gambar,
+            sehingga lebih baik digunakan pada pencahayaan
+            yang tidak merata.
+        </p>
+
+    </div>
+
+</div>
+
+    </div>
+
+   <!-- THRESHOLD SECTION -->
+<div id="thresholdSection"
+class="content-section"
+style="display:none;">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <h1>Threshold Processing</h1>
+
+        <div class="user-info">
+            <i class="fa-solid fa-user"></i>
+            <span>Welcome User</span>
+        </div>
+
+    </div>
+
+    <!-- UPLOAD SECTION -->
+    <div class="upload-section">
+
+        <h2>Upload Image</h2>
+
+        <div class="upload-box">
+
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            <p>Drag & Drop Image Here</p>
+
+            <input type="file" id="imageInput">
+
+        </div>
+
+    </div>
+
+
+    <!-- THRESHOLD CONTROLS -->
+    <div class="threshold-controls">
+
+        <h2>Threshold Settings</h2>
+
+        <select id="thresholdType">
+
+            <option value="binary">
+                Binary Threshold
+            </option>
+
+            <option value="binaryInv">
+                Binary Inverse
+            </option>
+
+            <option value="adaptive">
+                Adaptive Threshold
+            </option>
+
+        </select>
+
+        <!-- SLIDER -->
+        <div class="slider-box">
+
+            <label>Threshold Value:</label>
+
+            <input type="range"
+            id="thresholdSlider"
+            min="0"
+            max="255"
+            value="127">
+
+            <span id="sliderValue">127</span>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACTION BUTTONS -->
+    <div class="action-buttons">
+
+        <button id="applyBtn">
+            <i class="fa-solid fa-check"></i>
+            Apply
+        </button>
+
+        <button id="resetBtn">
+            <i class="fa-solid fa-rotate-left"></i>
+            Reset
+        </button>
+
+        <button id="saveBtn">
+            <i class="fa-solid fa-download"></i>
+            Save Image
+        </button>
+
+    </div>
+
+
+    <!-- PREVIEW SECTION -->
+    <div class="preview-section">
+
+        <canvas id="canvasOutput"
+        style="display:none;">
+        </canvas>
+
+        <!-- BEFORE -->
+        <div class="preview-card">
+
+            <h3>Before</h3>
+
+            <div class="image-preview">
+
+                <img id="beforeImage"
+                src=""
+                alt="">
+
+            </div>
+
+        </div>
+
+        <!-- AFTER -->
+        <div class="preview-card">
+
+            <h3>After</h3>
+
+            <div class="image-preview">
+
+                <img id="afterImage"
+                src=""
+                alt="">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+  <!-- HISTORY SECTION -->
+<div id="historySection"
+class="content-section"
+style="display:none;">
+
+    <div class="header">
+        <h1>History</h1>
+    </div>
+
+    <!-- CLEAR HISTORY BUTTON -->
+   
+    <div id="historyContainer"
+    class="history-container">
+    </div>
+
+</div>
+
+   <!-- SETTINGS SECTION -->
+<div id="settingsSection"
+class="content-section"
+style="display:none;">
+
+    <div class="header">
+        <h1>Settings</h1>
+    </div>
+
+    <div class="settings-container">
+
+        <!-- USER PROFILE -->
+        <div class="settings-card">
+
+            <h2>
+                <i class="fa-solid fa-user"></i>
+                User Profile
+            </h2>
+
+            <p>Username : Semardi Taneo</p>
+            <p>Status : Active</p>
+
+        </div>
+
+
+        <!-- DEFAULT THRESHOLD -->
+        <div class="settings-card">
+
+            <h2>
+                <i class="fa-solid fa-sliders"></i>
+                Default Threshold
+            </h2>
+
+            <p>Default Value :</p>
+
+            <input
+            type="range"
+            min="0"
+            max="255"
+            value="127"
+            id="defaultThreshold">
+
+            <p id="defaultValue">127</p>
+
+        </div>
+
+
+        <!-- HISTORY MANAGEMENT -->
+        <div class="settings-card">
+
+            <h2>
+                <i class="fa-solid fa-trash"></i>
+                History Management
+            </h2>
+
+            <p>
+                Delete all threshold processing history.
+            </p>
+
+            <button id="clearHistoryBtn"
+            class="login-btn">
+                Clear History
+            </button>
+
+        </div>
+
+
+        <!-- ABOUT APP -->
+        <div class="settings-card">
+
+            <h2>
+                <i class="fa-solid fa-circle-info"></i>
+                About Application
+            </h2>
+
+            <p>
+                Smart Image Thresholding App
+            </p>
+
+            <p>
+                Version 1.0
+            </p>
+
+            <p>
+                Developed for UI/UX Final Project
+                using Digital Image Processing.
+            </p>
+
+        </div>
+
+        <!-- THEME SETTINGS -->
+<div class="settings-card">
+
+    <h2>
+        <i class="fa-solid fa-moon"></i>
+        Theme Settings
+    </h2>
+
+    <p>Select Theme:</p>
+
+    <select id="themeSelect">
+
+        <option value="dark">
+            Dark Mode
+        </option>
+
+        <option value="light">
+            Light Mode
+        </option>
+
+    </select>
+
+</div>
+
+    </div>
+
+</div>
+
+    <!-- OpenCV -->
+<script async src="https://docs.opencv.org/4.x/opencv.js"></script>
+
+<!-- Script -->
+<script src="script.js"></script>
+
+</body>
+</html>
